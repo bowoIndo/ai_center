@@ -11,13 +11,15 @@
     <h2 class="mb-4">Chat AI</h2>
     <form method="POST">
         <div class="mb-3">
-            <textarea class="form-control" id="searchtext" name="searchtext" rows="4" required></textarea>
+            <span id="result"></span>
+            <textarea style="margin-top: 10px;" class="form-control" id="searchtext" name="searchtext" rows="4" required></textarea>
         </div>
         <button id="search" class="btn btn-primary" type="button">Search</button>
     </form>
 
     <script>
         $(document).ready(function() {
+
             $("#search").click(function(event) {
                 event.preventDefault(); 
             
@@ -28,7 +30,8 @@
                     type: "POST",
                     data: { searchbox: userInput },  // Parameter tetap "name" sesuai request awal
                     success: function(response) {
-                        $("#result").text("Response: " + response.reply);
+                        debugger
+                        $("#result").text("Response: " + response['jawaban']);
                     },
                     error: function(xhr, status, error) {
                         console.error("Error:", xhr.responseText);
